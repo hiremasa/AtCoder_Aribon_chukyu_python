@@ -3,17 +3,17 @@ X = [int(input())-1 for _ in range(M)]
 
 def is_ok(t):
 
-    last = 0
+    last = -1
     for x in X:
         if x <= last:
-            last = max(x + t + 1, last)
+            last = max(x + t, last) 
         else:
-            if x - t > last:
+            if x - t > last + 1:
                 return False
             else:
-                move = x - last
-                right_path = x + max(t - move * 2, 0) + 1
-                left_path = x + max((t- move)//2, 0) + 1
+                move = x - (last + 1)
+                left_path = x + max(t - move * 2, 0) 
+                right_path = x + max((t- move)//2, 0) 
 
                 last = max(right_path, left_path)
                 #last = max(last, last + t - 2 * (x - last), last + (t - x + last)//2, x)
